@@ -17,7 +17,7 @@ setup(
     version=iex.__version__,
     description='A module to retrieve stock data from IEX',
     long_description=long_description,
-    # url='',
+    url='https://github.com/udrea/iex',
     author='Iulian Udrea',
     author_email='iulian.udrea14@alumni.imperial.ac.uk',
     license='Apache License 2.0',
@@ -82,8 +82,8 @@ setup(
     # issues, where the source is hosted, where to say thanks to the package
     # maintainers, and where to support the project financially. The key is
     # what's used to render the link text on PyPI.
-    # project_urls={
-    #     'Bug Reports': '',
-    #     'Source': '',
-    # },
+    project_urls={
+        'Bug Reports': 'https://github.com/udrea/iex/issues',
+        'Source': 'https://github.com/udrea/iex',
+    },
 )
