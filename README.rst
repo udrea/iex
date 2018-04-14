@@ -1,5 +1,10 @@
 iex
 ===
+.. image:: https://badge.fury.io/py/iex.svg
+    :target: https://badge.fury.io/py/iex
+.. image:: https://img.shields.io/pypi/l/iex.svg
+		:target: https://opensource.org/licenses/Apache-2.0
+
 A Python module to retrieve stock market data from `The Investors Exchange (IEX) <https://iextrading.com/>`__
 Developer Platform.
 
