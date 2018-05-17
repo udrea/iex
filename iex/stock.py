@@ -16,6 +16,7 @@ class Stock(_Base):
 	_NEWS_RANGE = range(1, 51)
 	_PERIOD = ['5y', '2y', '1y', 'ytd', '6m', '3m', '1m']
 	_CHART_RANGE = _PERIOD + ['date', 'dynamic']
+	_LIST_TYPE = ['mostactive', 'gainers', 'losers', 'iexvolume', 'iexpercent']
 
 	def batch_requests(self):
 		"""https://iextrading.com/developer/docs/#batch-requests"""
@@ -127,7 +128,11 @@ class Stock(_Base):
 
 	def get_list(self, list_type):
 		"""https://iextrading.com/developer/docs/#list"""
-		payload = ''.join(['/stock/market/list/', list_type])
+		if list_type not in self._LIST_TYPE:
+			raise IEXAPIError('Invalid list. Available lists: {}'.format(self._LIST_TYPE))
+		else:
+			payload = ''.join(['/market/list/', list_type])
+
 		data = self._get_json(self._ENDPOINT, payload)
 		lists = pd.DataFrame(data)
 		return(lists)
