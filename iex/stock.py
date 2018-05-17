@@ -15,7 +15,6 @@ class Stock(_Base):
 	_ENDPOINT = '/stock/'
 	_NEWS_RANGE = range(1, 51)
 	_PERIOD = ['5y', '2y', '1y', 'ytd', '6m', '3m', '1m']
-	_CHART_RANGE = _PERIOD + ['date', 'dynamic']
 	_LIST_TYPE = ['mostactive', 'gainers', 'losers', 'iexvolume', 'iexpercent']
 
 	def batch_requests(self):
@@ -35,14 +34,22 @@ class Stock(_Base):
 
 		return(quote, bids, asks, trades, systemEvent)
 
-	def get_chart(self, symbol, chart_range='1m'):
+	def get_chart(self, symbol, chart_range='1m', date=None, dynamic=False):
 		"""https://iextrading.com/developer/docs/#chart"""
-		if chart_range is None:
-			payload = ''.join([symbol, '/chart'])
-		elif chart_range not in self._CHART_RANGE:
-			raise IEXAPIError('Out of range.')
+		if date:
+			payload = ''.join([symbol, '/chart/date/', date])
+		elif dynamic:
+			payload = ''.join([symbol, '/chart/dynamic'])
+			data = self._get_json(self._ENDPOINT, payload)
+			chart = pd.DataFrame(data['data'])
+			return(chart)
 		else:
-			payload = ''.join([symbol, '/chart/', chart_range])
+			if chart_range is None:
+				payload = ''.join([symbol, '/chart'])
+			elif chart_range not in self._PERIOD:
+				raise IEXAPIError('Out of range. Available ranges: {}'.format(_PERIOD))
+			else:
+				payload = ''.join([symbol, '/chart/', chart_range])
 
 		data = self._get_json(self._ENDPOINT, payload)
 		chart = pd.DataFrame(data)
