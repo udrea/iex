@@ -33,6 +33,6 @@ stable version. It is subject to regular breaking changes.
 
 License
 -------
-Copyright 2018 Iulian Udrea <iulian.udrea14@alumni.imperial.ac.uk>
+Copyright 2018 `Iulian Udrea <iulian.udrea14@alumni.imperial.ac.uk>`__
 
 See LICENSE.

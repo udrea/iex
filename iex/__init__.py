@@ -1,6 +1,9 @@
 # Filename: __init__.py
 
 """
+A Python module to retrieve stock market data from The Investors Exchange (IEX)
+Developer Platform.
+
 Data provided for free by IEX (https://iextrading.com/developer/).
 See https://iextrading.com/api-exhibit-a/ for more information.
 """
@@ -12,7 +15,7 @@ from iex.market.hist import HIST
 from iex.market.deep import DEEP
 from iex.stats import Stats
 
-# __all__ = ['Stock', 'Reference', 'TOPS', 'Last', 'Hist', 'DEEP', 'Stats']
+# __all__ = ['Stock', 'Reference', 'TOPS', 'HIST', 'DEEP', 'Stats']
 
 __author__ = 'Iulian Udrea'
 
